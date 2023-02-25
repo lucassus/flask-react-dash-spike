@@ -3,11 +3,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { FirstPage } from "./pages/FirstPage";
+import { SillyCounterPage } from "./pages/SillyCounterPage";
 import { SecondPage } from "./pages/SecondPage";
-import { ThirdPage } from "./pages/ThirdPage";
+import { DashFirstPage } from "./pages/DashFirstPage";
 import { Layout } from "./Layout";
-import { FourthPage } from "./pages/FourthPage";
+import { DashSecondPage } from "./pages/DashSecondPage";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <FirstPage />,
+        element: <SillyCounterPage />,
       },
       {
         path: "second",
@@ -24,17 +24,16 @@ const router = createBrowserRouter([
       },
       {
         path: "third",
-        element: <ThirdPage />,
+        element: <DashFirstPage />,
       },
       {
         path: "fourth",
-        element: <FourthPage />,
+        element: <DashSecondPage />,
       },
     ],
   },
 ]);
 
-// TODO: Add bootstrap with mice navbar and navigation
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
