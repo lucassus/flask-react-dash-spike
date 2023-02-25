@@ -2,17 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { First } from "./pages/First";
-import { Second } from "./pages/Second";
+import { FirstPage } from "./pages/FirstPage";
+import { SecondPage } from "./pages/SecondPage";
+import { ThirdPage } from "./pages/ThirdPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <First />,
+    element: <FirstPage />,
   },
   {
     path: "/second",
-    element: <Second />,
+    element: <SecondPage />,
+  },
+  {
+    path: "/third",
+    element: <ThirdPage />,
   },
 ]);
 

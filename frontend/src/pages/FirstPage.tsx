@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const First: React.FunctionComponent = () => {
+export const FirstPage: React.FunctionComponent = () => {
   const [count, setCount] = useState(0);
 
   // TODO: Simplify these routes, must be embedded in the router provider...
@@ -13,6 +13,9 @@ export const First: React.FunctionComponent = () => {
         </li>
         <li>
           <Link to="/second">Second</Link>
+        </li>
+        <li>
+          <Link to="/third">Third</Link>
         </li>
       </ul>
 

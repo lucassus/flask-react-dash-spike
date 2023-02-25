@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 dash_app = dash.Dash(__name__, server=app, url_base_pathname="/dash/")
 
+# TODO: Move it to a separate file
+# TODO: Add dash app with a nice plot
 dash_app.layout = html.Div(
     [
         html.H6("Change the value in the text box to see callbacks in action!"),
