@@ -14,8 +14,8 @@ export const Navigation = () => (
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/second">
-            Second
+          <Nav.Link as={Link} to="/expenses">
+            Expenses
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

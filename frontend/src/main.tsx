@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { SillyCounterPage } from "./pages/SillyCounterPage";
-import { SecondPage } from "./pages/SecondPage";
+import { ExpensesPage } from "./pages/ExpensesPage";
 import { DashFirstPage } from "./pages/DashFirstPage";
 import { Layout } from "./Layout";
 import { DashSecondPage } from "./pages/DashSecondPage";
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <SillyCounterPage />,
       },
       {
-        path: "second",
-        element: <SecondPage />,
+        path: "expenses",
+        element: <ExpensesPage />,
       },
       {
         path: "third",

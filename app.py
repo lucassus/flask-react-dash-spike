@@ -1,6 +1,10 @@
+import uuid
+
 import dash
 from dash import Dash, html
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
+
+from backend.expenses import Expense, list_expenses, create_expense, delete_expense
 
 app = Flask(__name__)
 
@@ -23,6 +27,25 @@ def health():
 @app.route("/api/hello")
 def api_hello():
     return jsonify({"message": "Hello World!"})
+
+
+# TODO: Move it to a blueprint
+@app.route("/api/expenses", methods=["GET"])
+def api_expenses():
+    expenses = list_expenses()
+    return jsonify([expense.dict() for expense in expenses])
+
+
+@app.route("/api/expenses", methods=["POST"])
+def api_expenses_create():
+    expense = create_expense(Expense.parse_raw(request.data))
+    return jsonify(expense.dict())
+
+
+@app.route("/api/expenses/<uuid:uuid>", methods=["DELETE"])
+def api_expenses_delete(uuid: uuid.UUID):
+    delete_expense(uuid)
+    return jsonify({})
 
 
 @app.route("/assets/<path:path>")
