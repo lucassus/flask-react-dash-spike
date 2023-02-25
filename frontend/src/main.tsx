@@ -1,13 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  Link,
-  RouterProvider,
-} from "react-router-dom";
-import {First} from "./pages/First";
-import {Second} from "./pages/Second";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { First } from "./pages/First";
+import { Second } from "./pages/Second";
 
 const router = createBrowserRouter([
   {
@@ -17,11 +13,12 @@ const router = createBrowserRouter([
   {
     path: "/second",
     element: <Second />,
-  }
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+// TODO: Add bootstrap with mice navbar and navigation
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-     <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
-)
+);

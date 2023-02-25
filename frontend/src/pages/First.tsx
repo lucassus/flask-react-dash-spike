@@ -17,7 +17,9 @@ export const First: React.FunctionComponent = () => {
       </ul>
 
       <h1>First</h1>
-      <button onClick={() => setCount((count) => count + 1)}>{count}</button>
+      <button onClick={() => setCount((count) => count + 1)}>
+        Counter {count}
+      </button>
     </div>
   );
 };
