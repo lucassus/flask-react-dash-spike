@@ -1,12 +1,11 @@
+import dash
+from dash import Dash, html
 from flask import Flask, jsonify, send_from_directory
-
-from backend.dash_app import create_first_dash_app
-from backend.second_dash_app import create_second_dash_app
 
 app = Flask(__name__)
 
-first_dash_app = create_first_dash_app(server=app, url_base_pathname="/dash/")
-second_dash_app = create_second_dash_app(server=app, url_base_pathname="/dash-2/")
+dash_app = Dash(__name__, server=app, use_pages=True, pages_folder="./backend/pages", url_base_pathname="/dash/")
+dash_app.layout = html.Div(dash.page_container)
 
 
 @app.route("/health")

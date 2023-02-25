@@ -4,7 +4,7 @@ export const ThirdPage: React.FunctionComponent = () => (
   <div>
     <h3>Dash app embedded in an iframe</h3>
     <iframe
-      src="/dash"
+      src="/dash/first-page"
       style={{
         position: "fixed",
         border: "none",
