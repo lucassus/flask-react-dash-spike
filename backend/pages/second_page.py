@@ -6,7 +6,7 @@ dash.register_page(__name__)
 
 layout = html.Div(
     [
-        html.H6("Change the value in the text box to see callbacks in action!"),
+        html.H3("Change the value in the text box to see callbacks in action!"),
         output_html := html.Div(),
         html.Div(["Input: ", input_element := dcc.Input(value="initial value", type="text")]),
     ],
