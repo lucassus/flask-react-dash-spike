@@ -1,8 +1,14 @@
-from flask import Flask
+from flask import Flask, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="app", static_url_path="/app")
 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/health")
+def health():
+    return jsonify({"status": "OK"})
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return app.send_static_file("index.html")
