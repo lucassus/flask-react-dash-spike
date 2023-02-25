@@ -12,6 +12,7 @@ Flask = "^2.2.3"
 dash = "^2.8.1"
 
 [tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
 
 [build-system]
 requires = ["poetry-core"]
