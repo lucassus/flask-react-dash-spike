@@ -34,7 +34,6 @@ def catch_all(path):
     return send_from_directory("./frontend/dist/assets", path)
 
 
-# TODO: JavaScript stacktraces are not readable
 # TODO: Hot module reloading does not work
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
