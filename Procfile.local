@@ -1,0 +1,2 @@
+backend: flask --debug run --port 9000
+frontend: cd frontend && yarn autobuild
