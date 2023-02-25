@@ -5,13 +5,13 @@ export const Layout: React.FunctionComponent = () => (
   <div>
     <ul>
       <li>
-        <Link to="/">First</Link>
+        <Link to="/">Silly Counter</Link>
       </li>
       <li>
         <Link to="/second">Second</Link>
       </li>
       <li>
-        <Link to="/third">Third</Link>
+        <Link to="/third">Dash app</Link>
       </li>
     </ul>
 
