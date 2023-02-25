@@ -11,7 +11,7 @@ export const SecondPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h1>message from the server: {message}</h1>
+      <h3>Message from the server: {message}</h3>
     </div>
   );
 };

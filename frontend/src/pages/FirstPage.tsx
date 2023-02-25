@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 
 export const FirstPage: React.FunctionComponent = () => {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <h1>First</h1>
-      <button onClick={() => setCount((count) => count + 1)}>
+      <h3>Silly react counter</h3>
+
+      <Button onClick={() => setCount((count) => count + 1)}>
         Counter {count}
-      </button>
+      </Button>
     </div>
   );
 };
