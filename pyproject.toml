@@ -9,6 +9,7 @@ packages = [{include = "flask_react_dash_spike"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 Flask = "^2.2.3"
+dash = "^2.8.1"
 
 [tool.poetry.group.dev.dependencies]
 

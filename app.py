@@ -1,6 +1,16 @@
+import dash as dash
+from dash import html
 from flask import Flask, jsonify, send_from_directory
 
 app = Flask(__name__)
+
+dash_app = dash.Dash(
+    __name__,
+    server=app,
+    url_base_pathname="/dash/"
+)
+
+dash_app.layout = html.Div(id="dash-container", children="Hello Dash!")
 
 
 @app.route("/health")
@@ -11,6 +21,11 @@ def health():
 @app.route("/api/hello")
 def api_hello():
     return jsonify({"message": "Hello World!"})
+
+
+@app.route("/dash")
+def my_dash_app():
+    return dash_app.index()
 
 
 # Static files
