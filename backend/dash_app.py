@@ -27,7 +27,11 @@ def create_first_dash_app(server: Flask, url_base_pathname:str) -> dash.Dash:
     )
 
     # TODO: What about @callback for multiple apps?
-    @app.callback(Output("graph-with-slider", "figure"), Input("year-slider", "value"))
+    # TODO: Maybe multipage app will be the option https://dash.plotly.com/urls
+    @app.callback(
+        Output("graph-with-slider", "figure"),
+        Input("year-slider", "value"),
+    )
     def update_figure(selected_year):
         filtered_df = df[df.year == selected_year]
 
