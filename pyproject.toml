@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flask-react-dash-spike"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "flask_react_dash_spike"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Flask = "^2.2.3"
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
