@@ -7,6 +7,7 @@ import { FirstPage } from "./pages/FirstPage";
 import { SecondPage } from "./pages/SecondPage";
 import { ThirdPage } from "./pages/ThirdPage";
 import { Layout } from "./Layout";
+import { FourthPage } from "./pages/FourthPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "third",
         element: <ThirdPage />,
+      },
+      {
+        path: "fourth",
+        element: <FourthPage />,
       },
     ],
   },

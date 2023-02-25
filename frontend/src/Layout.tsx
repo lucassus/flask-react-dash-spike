@@ -20,6 +20,11 @@ export const Layout: React.FunctionComponent = () => (
           Dash app
         </Nav.Link>
       </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as={Link} to="/fourth">
+          Second Dash app
+        </Nav.Link>
+      </Nav.Item>
     </Nav>
 
     <Outlet />
