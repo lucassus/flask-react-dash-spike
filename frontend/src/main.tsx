@@ -1,18 +1,36 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { First } from "./pages/First";
-import { Second } from "./pages/Second";
+import { FirstPage } from "./pages/FirstPage";
+import { SecondPage } from "./pages/SecondPage";
+import { ThirdPage } from "./pages/ThirdPage";
+import { Layout } from "./Layout";
+import { FourthPage } from "./pages/FourthPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <First />,
-  },
-  {
-    path: "/second",
-    element: <Second />,
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <FirstPage />,
+      },
+      {
+        path: "second",
+        element: <SecondPage />,
+      },
+      {
+        path: "third",
+        element: <ThirdPage />,
+      },
+      {
+        path: "fourth",
+        element: <FourthPage />,
+      },
+    ],
   },
 ]);
 
