@@ -1,15 +1,12 @@
-import pandas as pd
 import dash
-from dash import html, dcc, Output, Input, callback
+import pandas as pd
 import plotly.express as px
-
+from dash import Input, Output, callback, dcc, html
 
 dash.register_page(__name__)
 
 
-df = pd.read_csv(
-    "https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv"
-)
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv")
 
 layout = html.Div(
     [

@@ -1,16 +1,10 @@
 import React from "react";
 
+import { DashApp } from "../DashApp";
+
 export const ThirdPage: React.FunctionComponent = () => (
   <div>
     <h3>Dash app embedded in an iframe</h3>
-    <iframe
-      src="/dash/first-page"
-      style={{
-        position: "fixed",
-        border: "none",
-        width: "100%",
-        height: "100%",
-      }}
-    />
+    <DashApp src="/dash/first-page" />
   </div>
 );

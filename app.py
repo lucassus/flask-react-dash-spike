@@ -4,7 +4,14 @@ from flask import Flask, jsonify, send_from_directory
 
 app = Flask(__name__)
 
-dash_app = Dash(__name__, server=app, use_pages=True, pages_folder="./backend/pages", url_base_pathname="/dash/")
+dash_app = Dash(
+    __name__,
+    server=app,
+    use_pages=True,
+    pages_folder="./backend/pages",
+    url_base_pathname="/dash/",
+)
+
 dash_app.layout = html.Div(dash.page_container)
 
 

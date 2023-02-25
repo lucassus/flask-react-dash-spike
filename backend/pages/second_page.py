@@ -1,5 +1,5 @@
 import dash
-from dash import html, callback, dcc, Output, Input
+from dash import Input, Output, callback, dcc, html
 
 dash.register_page(__name__)
 
@@ -8,10 +8,7 @@ layout = html.Div(
     [
         html.H6("Change the value in the text box to see callbacks in action!"),
         output_html := html.Div(),
-        html.Div(
-            ["Input: ", input_element := dcc.Input(value="initial value", type="text")]
-        ),
-
+        html.Div(["Input: ", input_element := dcc.Input(value="initial value", type="text")]),
     ],
 )
 
