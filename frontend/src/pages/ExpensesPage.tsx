@@ -10,6 +10,7 @@ type Expense = {
 export const ExpensesPage: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false);
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [value, setValue] = useState(0);
 
   const fetchExpenses = () => {
     setLoading(true);
@@ -20,6 +21,16 @@ export const ExpensesPage: React.FunctionComponent = () => {
       .finally(() => setLoading(false));
   };
 
+  const createExpense = (description: string, amount: number) => {
+    fetch("/api/expenses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ description, amount, date: "2023-02-28" }),
+    }).then(() => fetchExpenses());
+  };
+
   useEffect(() => {
     fetchExpenses();
   }, []);
@@ -28,6 +39,11 @@ export const ExpensesPage: React.FunctionComponent = () => {
     fetch(`/api/expenses/${id}`, { method: "DELETE" }).then(() =>
       fetchExpenses()
     );
+  };
+
+  const handleSubmit = () => {
+    createExpense("test", value);
+    setValue(0);
   };
 
   return (
@@ -44,6 +60,15 @@ export const ExpensesPage: React.FunctionComponent = () => {
           </li>
         ))}
       </ul>
+
+      <form>
+        <input
+          type="number"
+          value={value}
+          onChange={(e) => setValue(parseFloat(e.target.value))}
+        />
+        <Button onClick={handleSubmit}>Add expense</Button>
+      </form>
     </div>
   );
 };
