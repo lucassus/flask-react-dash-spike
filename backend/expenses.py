@@ -4,14 +4,14 @@ import uuid
 from typing import Optional
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError, Field
 
 
 class Expense(BaseModel):
     id: Optional[UUID]
     date: datetime.date
     amount: float
-    description: str
+    description: str = Field(..., min_length=6, max_length=100)
 
 
 _expenses: list[Expense] = [
@@ -49,6 +49,19 @@ if __name__ == "__main__":
             )
         )
     )
+
+    try:
+        create_expense(
+            Expense.parse_raw(
+                json.dumps(
+                    {
+                        "amount": 100.00,
+                    }
+                )
+            )
+        )
+    except ValidationError as e:
+        print(e.errors())
 
     delete_expense(_expenses[0].id)
     delete_expense(_expenses[1].id)

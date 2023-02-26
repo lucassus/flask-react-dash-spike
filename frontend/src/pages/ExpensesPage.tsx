@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 type Expense = {
   id: string;
@@ -7,10 +8,14 @@ type Expense = {
   amount: number;
 };
 
+type FormValues = {
+  description: string;
+  amount: number;
+};
+
 export const ExpensesPage: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false);
   const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [value, setValue] = useState(0);
 
   const fetchExpenses = () => {
     setLoading(true);
@@ -21,14 +26,26 @@ export const ExpensesPage: React.FunctionComponent = () => {
       .finally(() => setLoading(false));
   };
 
-  const createExpense = (description: string, amount: number) => {
-    fetch("/api/expenses", {
+  const createExpense = ({
+    description,
+    amount,
+  }: {
+    description: string;
+    amount: number;
+  }) => {
+    return fetch("/api/expenses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ description, amount, date: "2023-02-28" }),
-    }).then(() => fetchExpenses());
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((errors) => Promise.reject(errors));
+      }
+
+      return fetchExpenses();
+    });
   };
 
   useEffect(() => {
@@ -41,9 +58,28 @@ export const ExpensesPage: React.FunctionComponent = () => {
     );
   };
 
-  const handleSubmit = () => {
-    createExpense("test", value);
-    setValue(0);
+  // TODO: Move form the a separate component
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    reset,
+  } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    createExpense(data)
+      .catch((errors) => {
+        for (const error of errors) {
+          setError(error.loc[0], {
+            type: "server",
+            message: error.msg,
+          });
+        }
+
+        return Promise.reject();
+      })
+      .then(() => reset());
   };
 
   return (
@@ -61,14 +97,37 @@ export const ExpensesPage: React.FunctionComponent = () => {
         ))}
       </ul>
 
-      <form>
-        <input
-          type="number"
-          value={value}
-          onChange={(e) => setValue(parseFloat(e.target.value))}
-        />
-        <Button onClick={handleSubmit}>Add expense</Button>
-      </form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group>
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            type="text"
+            {...register("description")}
+            placeholder="Beer"
+          />
+          {errors.description && (
+            <Form.Text style={{ color: "red" }}>
+              {errors.description.message}
+            </Form.Text>
+          )}
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Amount</Form.Label>
+          <Form.Control
+            type="number"
+            {...register("amount")}
+            placeholder="9.99"
+          />
+          {errors.amount && (
+            <Form.Text style={{ color: "red" }}>
+              {errors.amount.message}
+            </Form.Text>
+          )}
+        </Form.Group>
+
+        <Button type="submit">Add expense</Button>
+      </Form>
     </div>
   );
 };

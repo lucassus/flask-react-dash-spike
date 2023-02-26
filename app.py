@@ -3,6 +3,7 @@ import uuid
 import dash
 from dash import Dash, html
 from flask import Flask, jsonify, send_from_directory, request
+from pydantic import ValidationError
 
 from backend.expenses import Expense, list_expenses, create_expense, delete_expense
 
@@ -38,7 +39,11 @@ def api_expenses():
 
 @app.route("/api/expenses", methods=["POST"])
 def api_expenses_create():
-    expense = create_expense(Expense.parse_raw(request.data))
+    try:
+        expense = create_expense(Expense.parse_raw(request.data))
+    except ValidationError as e:
+        return jsonify(e.errors()), 422
+
     return jsonify(expense.dict())
 
 
