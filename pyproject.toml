@@ -40,7 +40,7 @@ ignore_missing_imports = true
 [tool.poetry.dependencies]
 python = "^3.11"
 Flask = "^2.2.3"
-dash = "^2.8.1"
+dash = "^2.9.2"
 pandas = "^1.5.3"
 
 [tool.poetry.group.dev.dependencies]
